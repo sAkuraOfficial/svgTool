@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# SVG Tool 🎨
+A modern, web-based SVG manipulation and icon management toolkit built with **React**, **Vite**, **Tailwind CSS**, and **Shadcn UI**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features ✨
 
-Currently, two official plugins are available:
+- **SVG Workspace**: Upload, edit, and instantly preview custom SVG files in your browser.
+- **Icon Library Integration**: Quick-search and one-click add directly from the massive `lucide-react` icon library.
+- **Color Manipulation Engine**: Use the built-in color picker or our curated Tailwind CSS color scale dropdown to universally alter active icons seamlessly.
+- **Dynamic Visio-Spatial Syncing**: Icons automatically and smoothly scale into the layout space mirroring your active export-size parameters.
+- **Save to Directory (Save As)**: Leverage the modern File System Access API to pick a destination folder and push all uniquely styled icons straight into it—bypassing the clutter of your default "Downloads" root.
+- **Export As ZIP**: Package your entire workspace with a single click.
+- **Export History Tracker**: Locally caches your recent parameter configurations (Size, Background, Target Color) for 1-click redeployment.
+- **Responsive Layout**: Designed utilizing declarative Shadcn UI tabs that automatically reconfigure layout grids across wide-screen desktops, tablets, and mobile phones natively.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started 🚀
 
-## React Compiler
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or pnpm or yarn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
+1. Clone the repository
+2. Run `npm install` inside the project root folder.
+3. Start the Vite dev server with `npm run dev`
 
-## Expanding the ESLint configuration
+## Deployment 🛠️
+This project includes a built-in Github Actions Workflow!
+Whenever you push to the `main` or `master` branch, the `.github/workflows/deploy.yml` file will automatically compile and deploy the site directly to **GitHub Pages**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Make sure you go into your GitHub repository settings:
+`Settings` -> `Pages` -> Set **Source** dropdown to `GitHub Actions`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Technologies Used
+- React 18
+- Vite
+- Tailwind CSS v4
+- Shadcn UI (Radix Primitives)
+- Lucide React
+- react-i18next (Internationalization)
+- JSZip (File bundling)
+- @tanstack/react-virtual (High performance DOM mapping)
