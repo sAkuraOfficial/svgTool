@@ -5,7 +5,7 @@ import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/svgTool/',
+  base: process.env.GITHUB_ACTIONS ? '/svgTool/' : '/',
   plugins: [
     react(),
     tailwindcss(),
