@@ -24,11 +24,20 @@ A modern, web-based SVG manipulation and icon management toolkit built with **Re
 3. Start the Vite dev server with `npm run dev`
 
 ## Deployment 🛠️
+### GitHub Pages
 This project includes a built-in Github Actions Workflow!
 Whenever you push to the `main` or `master` branch, the `.github/workflows/deploy.yml` file will automatically compile and deploy the site directly to **GitHub Pages**.
 
 Make sure you go into your GitHub repository settings:
 `Settings` -> `Pages` -> Set **Source** dropdown to `GitHub Actions`.
+
+### Docker & GitHub Packages (GHCR)
+A separate workflow `.github/workflows/docker-publish.yml` is included to automatically construct a lightweight standalone `NGINX` container showcasing the static app on port **1999**.
+
+**Trigger:** Publish a semver-compliant git tag (e.g., `v1.2.0`).
+1. `git tag v1.0.0`
+2. `git push origin v1.0.0`
+The container will be automatically built and exported into **GitHub Packages** (`ghcr.io/username/svgTool`).
 
 ## Technologies Used
 - React 18
