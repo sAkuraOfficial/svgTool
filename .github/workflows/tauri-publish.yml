@@ -1,0 +1,47 @@
+name: Build and Release Tauri App
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Automatically builds and publishes the .exe when a version tag is pushed
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: build tauri app
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Important: explicitly use relative paths for the native window to find HTML resources correctly!
+          VITE_BASE_PATH: './'
+        with:
+          tagName: app-v__VERSION__ 
+          releaseName: 'SVG Tool v__VERSION__'
+          releaseBody: 'See the assets to download the Windows Installer and executable.'
+          releaseDraft: false
+          prerelease: false
