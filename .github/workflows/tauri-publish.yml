@@ -2,8 +2,7 @@ name: Build and Release Tauri App
 
 on:
   push:
-    tags:
-      - 'v*.*.*'  # Automatically builds and publishes the .exe when a version tag is pushed
+    branches: ["main", "master"]  # Automatically builds and publishes the .exe on every push to main
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
@@ -40,8 +39,8 @@ jobs:
           # Important: explicitly use relative paths for the native window to find HTML resources correctly!
           VITE_BASE_PATH: './'
         with:
-          tagName: app-v__VERSION__ 
-          releaseName: 'SVG Tool v__VERSION__'
-          releaseBody: 'See the assets to download the Windows Installer and executable.'
+          tagName: app-v__VERSION__-${{ github.sha }} 
+          releaseName: 'SVG Tool v__VERSION__ (${{ github.sha }})'
+          releaseBody: 'Automated release triggered by push. See the assets to download the Windows Installer and executable.'
           releaseDraft: false
           prerelease: false
